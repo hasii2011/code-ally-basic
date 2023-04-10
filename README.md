@@ -5,6 +5,14 @@
 
 Host common artifacts for various projects I am developing.  This is package does not include any wxPython dependency
 
+___
+
+Written by <a href="mailto:email@humberto.a.sanchez.ii@gmail.com?subject=Hello Humberto">Humberto A. Sanchez II</a>  (C) 2023
+
+## Note
+For all kind of problems, requests, enhancements, bug reports, etc.,
+please drop me an e-mail.
+
 
 ![Humberto's Modified Logo](./developer/SillyGitHub.png)
 
