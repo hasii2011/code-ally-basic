@@ -3,7 +3,7 @@ setuptools==67.6.1
 twine==4.0.2
 build==0.10.0
 
-buildlackey~=0.5.0
+buildlackey~=0.6.0
 
 html-testRunner~=1.2.1
 mypy==1.2.0
