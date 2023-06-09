@@ -10,7 +10,7 @@ LICENSE = (HERE / 'LICENSE').read_text()
 
 setup(
     name="hasiihelper",
-    version="0.2.0",
+    version="0.2.1",
     author='Humberto A. Sanchez II',
     author_email='Humberto.A.Sanchez.II@gmail.com',
     maintainer='Humberto A. Sanchez II',
@@ -26,5 +26,5 @@ setup(
     packages=[
         'hasiihelper',
     ],
-    install_requires=['Deprecated~=1.2.13'],
+    install_requires=['Deprecated~=1.2.14'],
 )
