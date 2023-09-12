@@ -3,7 +3,7 @@ from unittest import TestSuite
 from unittest import TestCase
 from unittest import main as unitTestMain
 
-from hasiihelper.Singleton import Singleton
+from basiccodeally.Singleton import Singleton
 
 
 class Child(Singleton):

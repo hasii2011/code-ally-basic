@@ -2,7 +2,7 @@
 from unittest import TestSuite
 from unittest import main as unitTestMain
 
-from hasiihelper.Dimensions import Dimensions
+from basiccodeally.Dimensions import Dimensions
 
 from tests.UnitTestBase import UnitTestBase
 

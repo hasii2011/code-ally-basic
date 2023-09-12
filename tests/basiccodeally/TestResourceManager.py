@@ -7,7 +7,7 @@ from os import sep as osSep
 from unittest import TestSuite
 from unittest import main as unitTestMain
 
-from hasiihelper.ResourceManager import ResourceManager
+from basiccodeally.ResourceManager import ResourceManager
 from tests.UnitTestBase import UnitTestBase
 
 
