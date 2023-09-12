@@ -19,7 +19,7 @@ setup(
     description='Humberto`s Basic Common Code',
     long_description=README,
     long_description_content_type="text/markdown",
-    url="https://github.com/hasii2011/hasiihelper",
+    url="https://github.com/hasii2011/basiccodeally",
     package_data={
         'basiccodeally':  ['py.typed'],
     },
