@@ -1,7 +1,5 @@
 <img src="./developer/agpl-license-web-badge-version-2-256x48.png"/> 
-
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/hasii2011/hasiihelper/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/hasii2011/hasiihelper/tree/master)
-[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 
 Host common artifacts for various projects I am developing.  This is package does not include any wxPython dependency
 
@@ -37,8 +35,3 @@ to monitor their terms of service.
 Any use of this project's code by GitHub Copilot, past or present, is done
 without my permission.  I do not consent to GitHub's use of this project's
 code in Copilot.
-
-A repository owner may opt out of Copilot by changing Settings --> GitHub Copilot.
-
-I have done so.
-
