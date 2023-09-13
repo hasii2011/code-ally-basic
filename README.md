@@ -1,10 +1,8 @@
-<img src="./developer/agpl-license-web-badge-version-2-256x48.png"/> 
+![](https://github.com/hasii2011/code-ally-basic/blob/master/developer/agpl-license-web-badge-version-2-256x48.png "AGPL")
 
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/hasii2011/code-ally-basic/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/hasii2011/code-ally-basic/tree/master)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 [![PyPI version](https://badge.fury.io/py/basiccodeally.svg)](https://badge.fury.io/py/basiccodeally)
-
-![](https://github.com/hasii2011/code-ally-basic/blob/master/developer/agpl-license-web-badge-version-2-256x48.png "AGPL")
 
 Host common artifacts for various projects I am developing.  This is package does not include any wxPython dependency
 
@@ -21,11 +19,10 @@ This project uses [buildlackey](https://github.com/hasii2011/buildlackey) for da
 
 ---
 
-![Humberto's Modified Logo](./developer/SillyGitHub.png)
 
 I am concerned about GitHub's Copilot project
 
-
+![](https://github.com/hasii2011/code-ally-basic/blob/master/developer/SillyGitHub.png)
 
 I urge you to read about the
 [Give up GitHub](https://GiveUpGitHub.org) campaign from
