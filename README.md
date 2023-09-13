@@ -2,6 +2,7 @@
 
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/hasii2011/code-ally-basic/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/hasii2011/code-ally-basic/tree/master)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
+[![PyPI version](https://badge.fury.io/py/basiccodeally.svg)](https://badge.fury.io/py/basiccodeally)
 
 Host common artifacts for various projects I am developing.  This is package does not include any wxPython dependency
 
