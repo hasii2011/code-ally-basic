@@ -5,9 +5,9 @@ from unittest import main as unitTestMain
 
 from os import environ as osEnviron
 
-from basiccodeally.UnitTestBase import UnitTestBase
+from codeallybasic.UnitTestBase import UnitTestBase
 
-from basiccodeally.Environment import Environment
+from codeallybasic.Environment import Environment
 
 
 class TestEnvironmentBase(UnitTestBase):

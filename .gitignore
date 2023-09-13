@@ -5,7 +5,7 @@ __pycache__/
 /html/
 build/
 dist/
-basiccodeally.egg-info
+code.egg-info
 /pyenv-3.11.0/
 .envrc
 .python-version

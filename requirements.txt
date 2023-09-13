@@ -1,9 +1,9 @@
 wheel==0.41.2
-setuptools==68.2.1
+setuptools==68.2.2
 twine==4.0.2
 build==1.0.3
 
-buildlackey==1.1.0
+buildlackey==1.2.0
 
 html-testRunner~=1.2.1
 mypy==1.5.1

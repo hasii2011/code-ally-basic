@@ -2,7 +2,7 @@
 from unittest import TestSuite
 from unittest import main as unitTestMain
 
-from basiccodeally.Dimensions import Dimensions
+from codeallybasic.Dimensions import Dimensions
 
 from tests.UnitTestBase import UnitTestBase
 

@@ -5,8 +5,8 @@ from unittest import TestSuite
 
 from unittest import main as unitTestMain
 
-from basiccodeally.SemanticVersion import SemanticVersion
-from basiccodeally.SemanticVersion import SemanticVersionError
+from codeallybasic.SemanticVersion import SemanticVersion
+from codeallybasic.SemanticVersion import SemanticVersionError
 
 from tests.UnitTestBase import UnitTestBase
 
