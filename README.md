@@ -18,8 +18,6 @@ please drop me an e-mail.
 This project uses [buildlackey](https://github.com/hasii2011/buildlackey) for day to day development builds
 
 ---
-
-
 I am concerned about GitHub's Copilot project
 
 ![](https://github.com/hasii2011/code-ally-basic/blob/master/developer/SillyGitHub.png)
