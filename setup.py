@@ -27,5 +27,5 @@ setup(
     packages=[
         'codeallybasic',
     ],
-    install_requires=[],
+    install_requires=['Deprecated==1.2.14'],
 )

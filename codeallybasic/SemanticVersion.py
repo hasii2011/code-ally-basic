@@ -13,11 +13,14 @@ from re import compile as regexCompile
 
 from itertools import zip_longest as iZipLongest
 
+from deprecated import deprecated
+
 
 class SemanticVersionError(Exception):
     pass
 
 
+@deprecated(reason='Use this one https://github.com/rbarrois/python-semanticversion')
 class SemanticVersion:
     """
     Inspired by https://github.com/keleshev/version
