@@ -29,7 +29,7 @@ class TestEnvironmentBase(UnitTestBase):
         try:
             del osEnviron[Environment.ENV_PROJECTS_BASE]
         except KeyError:
-            pass    # May or may not exist;  don't care
+            pass  # May or may not exist; don't care
 
         # noinspection PyUnusedLocal
         eb: Environment = Environment(printCallback=self._printCallback)
@@ -41,7 +41,7 @@ class TestEnvironmentBase(UnitTestBase):
         try:
             del osEnviron[Environment.ENV_PROJECT]
         except KeyError:
-            pass    # May or may not exist;  don't care
+            pass       # May or may not exist; don't care
         # noinspection PyUnusedLocal
         eb: Environment = Environment(printCallback=self._printCallback)
         self.assertEquals(eb.projectDirectory, '', 'Should be empty')
@@ -56,8 +56,7 @@ def suite() -> TestSuite:
     import unittest
 
     testSuite: TestSuite = TestSuite()
-    # noinspection PyUnresolvedReferences
-    # testSuite.addTest(unittest.makeSuite(TestEnvironmentBase))
+
     testSuite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(testCaseClass=TestEnvironmentBase))
 
     return testSuite

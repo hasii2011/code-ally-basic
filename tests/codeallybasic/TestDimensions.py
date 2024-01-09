@@ -4,7 +4,7 @@ from unittest import main as unitTestMain
 
 from codeallybasic.Dimensions import Dimensions
 
-from tests.UnitTestBase import UnitTestBase
+from codeallybasic.UnitTestBase import UnitTestBase
 
 
 class TestDimensions(UnitTestBase):
@@ -52,8 +52,8 @@ def suite() -> TestSuite:
     import unittest
 
     testSuite: TestSuite = TestSuite()
-    # noinspection PyUnresolvedReferences
-    testSuite.addTest(unittest.makeSuite(TestDimensions))
+
+    testSuite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(testCaseClass=TestDimensions))
 
     return testSuite
 

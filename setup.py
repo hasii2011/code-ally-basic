@@ -15,7 +15,7 @@ setup(
     author='Humberto A. Sanchez II',
     author_email='Humberto.A.Sanchez.II@gmail.com',
     maintainer='Humberto A. Sanchez II',
-    maintainer_email='humberto.a.sanchez.ii@gmail.com',
+    maintainer_email='Humberto.A.Sanchez.II@gmail.com',
     description='Humberto`s Basic Common Code',
     long_description=README,
     long_description_content_type="text/markdown",

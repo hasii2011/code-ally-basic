@@ -6,7 +6,7 @@ from os import environ as osEnvironment
 from pathlib import Path
 
 HOME_ENV_VAR:            str = 'HOME'
-XDG_CONFIG_HOME_ENV_VAR: str = 'XDG_CONFIG_HOME'   # defines the base directory relative to which user specific configuration files should be stored.
+XDG_CONFIG_HOME_ENV_VAR: str = 'XDG_CONFIG_HOME'   # defines the base directory relative to which user-specific configuration files should be stored.
 
 CONFIGURATION_DIRECTORY: str = '.config'
 
@@ -15,7 +15,7 @@ class ConfigurationLocator:
     """
     Try XDG_CONFIG_HOME
     then HOME
-    finally just specify the current directory
+    finally use the current directory
     """
     def __init__(self):
 

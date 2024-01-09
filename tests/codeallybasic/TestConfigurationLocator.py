@@ -12,7 +12,7 @@ from codeallybasic.ConfigurationLocator import HOME_ENV_VAR
 from codeallybasic.ConfigurationLocator import CONFIGURATION_DIRECTORY
 from codeallybasic.ConfigurationLocator import ConfigurationLocator
 
-from tests.UnitTestBase import UnitTestBase
+from codeallybasic.UnitTestBase import UnitTestBase
 
 
 class TestConfigurationLocator(UnitTestBase):
@@ -36,11 +36,11 @@ class TestConfigurationLocator(UnitTestBase):
         try:
             del osEnvironment[HOME_ENV_VAR]
         except KeyError:
-            pass    # May or may not exist;  don't care
+            pass    # May or may not exist; don't care
         try:
             del osEnvironment[XDG_CONFIG_HOME_ENV_VAR]
         except KeyError:
-            pass    # May or may not exist;  don't care
+            pass    # May or may not exist; don't care
 
         configurationLocator: ConfigurationLocator = ConfigurationLocator()
         cwdPath: Path = Path(Path.cwd())
@@ -51,7 +51,7 @@ class TestConfigurationLocator(UnitTestBase):
         try:
             del osEnvironment[XDG_CONFIG_HOME_ENV_VAR]
         except KeyError:
-            pass    # May or may not exist;  don't care
+            pass    # May or may not exist; don't care
 
         fakeHomePath: Path = Path(f'/tmp/fakeHome/')
 

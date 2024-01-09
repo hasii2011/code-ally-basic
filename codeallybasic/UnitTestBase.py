@@ -77,10 +77,10 @@ class UnitTestBase(TestCase):
         """
         Use this method to get other unit test resources
         Args:
-            package:    The fully qualified package name (dot notation)
-            fileName:   The resources file name
+            package: The fully qualified package name (dot notation)
+            fileName: The resource's file name
 
-        Returns:  A fully qualified path name
+        Returns: A fully qualified path name
         """
 
         traversable: Traversable = files(package) / fileName

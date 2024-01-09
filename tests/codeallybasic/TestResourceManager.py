@@ -8,7 +8,7 @@ from unittest import TestSuite
 from unittest import main as unitTestMain
 
 from codeallybasic.ResourceManager import ResourceManager
-from tests.UnitTestBase import UnitTestBase
+from codeallybasic.UnitTestBase import UnitTestBase
 
 
 TESTS_RESOURCES_PACKAGE: str = 'tests.resources'
@@ -30,7 +30,7 @@ class TestResourceManager(UnitTestBase):
         try:
             del osEnviron[ResourceManager.RESOURCE_ENV_VAR]
         except KeyError:
-            pass    # May or may not exist;  don't care
+            pass    # May or may not exist; don't care
 
         expectedName: str = f'{getcwd()}{osSep}{TESTS_RESOURCES_PATH}{osSep}{TEST_CONFIGURATION_FILE}'
         rm: ResourceManager = ResourceManager()

@@ -1,6 +1,13 @@
 
 
 def singleton(cls):
+    """
+    This is a decorator
+    Args:
+        cls:
+
+    Returns:
+    """
     instance = [None]
 
     def wrapper(*args, **kwargs):

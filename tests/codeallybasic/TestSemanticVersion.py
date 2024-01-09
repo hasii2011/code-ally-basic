@@ -1,6 +1,4 @@
 
-from logging import Logger
-
 from unittest import TestSuite
 
 from unittest import main as unitTestMain
@@ -8,7 +6,7 @@ from unittest import main as unitTestMain
 from codeallybasic.SemanticVersion import SemanticVersion
 from codeallybasic.SemanticVersion import SemanticVersionError
 
-from tests.UnitTestBase import UnitTestBase
+from codeallybasic.UnitTestBase import UnitTestBase
 
 
 GOOD_PREVIOUS_BASIC_VERSION: str = '6.1.0'
@@ -256,8 +254,8 @@ def suite() -> TestSuite:
     import unittest
 
     testSuite: TestSuite = TestSuite()
-    # noinspection PyUnresolvedReferences
-    testSuite.addTest(unittest.makeSuite(TestSemanticVersion))
+
+    testSuite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(testCaseClass=TestSemanticVersion))
 
     return testSuite
 
