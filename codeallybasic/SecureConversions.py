@@ -31,34 +31,34 @@ class SecureConversions:
         return integerValue
 
     @classmethod
-    def secureInteger(cls, x: str):
+    def secureInteger(cls, integerValue: str):
         """
         For nonsensical values will fail during development with assertions turned on
 
         Args:
-            x:
+            integerValue:
 
         Returns: The integer value for the input string
         """
-        assert x is not None, 'Cannot be None'
-        assert x != '', 'Cannot convert an empty string'
+        assert integerValue is not None, 'Cannot be None'
+        assert integerValue != '', 'Cannot convert an empty string'
 
-        return int(x)
+        return int(integerValue)
 
     @classmethod
-    def secureBoolean(cls, x: str):
+    def secureBoolean(cls, booleanValue: str):
         """
         For nonsensical values will fail during development with assertions turned on
 
         Args:
-            x: Input string
+            booleanValue: Input string
 
         Returns: Either boolean true or false
 
         """
-        assert x is not None, 'Cannot convert None value to boolean'
+        assert booleanValue is not None, 'Cannot convert None value to boolean'
 
-        if x in [True, "True", "true", 1, "1"]:
+        if booleanValue in [True, "True", "true", 1, "1"]:
             return True
 
         return False

@@ -74,7 +74,7 @@ class TestSemanticVersion(UnitTestBase):
     def testBadVersion(self):
 
         try:
-            badVersion: str = 'x.x.x'
+            badVersion: str = 'integerValue.integerValue.integerValue'
             semanticVersion: SemanticVersion = SemanticVersion(badVersion)
 
             self.assertTrue(False, f'{semanticVersion} should have thrown exception')
