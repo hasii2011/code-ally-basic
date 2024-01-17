@@ -12,5 +12,5 @@ types-Deprecated==1.2.9.20240106
 
 #
 # So Circle CI works
-buildlackey==1.6.2
+buildlackey==1.6.3
 Deprecated==1.2.14

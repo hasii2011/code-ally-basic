@@ -3,6 +3,7 @@ from logging import Logger
 from logging import getLogger
 
 from os import environ as osEnvironment
+
 from pathlib import Path
 
 HOME_ENV_VAR:            str = 'HOME'

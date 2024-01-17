@@ -23,7 +23,7 @@ class Position:
             position.x = int(xy[0])
             position.y = int(xy[1])
         except ValueError as ve:
-            print(f'Dimensions - {ve}.')
+            print(f'Position - {ve}.')
             position.x = 0
             position.y = 0
 

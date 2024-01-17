@@ -3,7 +3,7 @@ from types import MethodType
 from deprecated import deprecated
 
 
-@deprecated(reason='Use SingletonV2 or V2 decorator')
+@deprecated(reason='Use SingletonV3')
 class Singleton(object):
     """
     Base class for singleton classes.
