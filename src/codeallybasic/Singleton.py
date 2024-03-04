@@ -14,7 +14,7 @@ class Singleton(object):
     Note that `__init__` must not be defined. Use `init` instead.
     This is because `__init__` will always be called, thus reinitializing the
     state of your singleton each time you try to instantiate it.
-    On the contrary, `init` will be called just one time.
+    On the contrary, `init` will be called one time.
 
     To be sure that the `__init__` method won't be inadvertently defined,
     the singleton will check for it at first instantiation and raise an
