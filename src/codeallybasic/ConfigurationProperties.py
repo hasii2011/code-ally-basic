@@ -105,7 +105,9 @@ class ConfigurationProperties:
     """
     def __init__(self, moduleName: str, baseFileName, sections: Sections):
         """
-        The subclassing component provides the following:
+        The subclassing component is responsible for calling self._loadConfiguration();
+        This is, so it can potentially modify the ConfigParser behavior
+
         Args:
             moduleName:     The component's module name
             baseFileName:   The base filename including the file extension
@@ -120,8 +122,6 @@ class ConfigurationProperties:
         self._configParser: ConfigParser = ConfigParser()
 
         self._sections: Sections = sections
-
-        self._loadConfiguration()
 
     @property
     def configurationParser(self) -> ConfigParser:

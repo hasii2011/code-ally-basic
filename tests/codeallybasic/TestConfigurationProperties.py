@@ -60,7 +60,10 @@ FAKE_SECTIONS: Sections = Sections(
 
 class FakeConfiguration(ConfigurationProperties):
     def __init__(self):
+
         super().__init__(baseFileName=BASE_FILE_NAME, moduleName=MODULE_NAME, sections=FAKE_SECTIONS)
+
+        self._loadConfiguration()
 
     @property
     @configurationGetter(sectionName='Ozzee')
