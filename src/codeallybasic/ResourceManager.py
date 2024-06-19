@@ -16,13 +16,13 @@ class ResourceManager:
     @classmethod
     def retrieveResourcePath(cls, bareFileName: str, resourcePath: str, packageName: str) -> str:
         """
-        Assume we are in an app;  If not then we are in development
+        Assume we are in an app;  If not, then we are in development
         Args:
-            bareFileName:  Simple file name
+            bareFileName:  Simple filename
             resourcePath:  OS Path that matches the package name
             packageName:   The package from which to retrieve the resource
 
-        Returns:  The fully qualified file name
+        Returns:  The fully qualified filename
         """
         try:
             from os import environ

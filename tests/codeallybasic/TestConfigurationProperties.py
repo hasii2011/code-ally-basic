@@ -6,6 +6,8 @@ from pathlib import Path
 
 from shutil import rmtree
 
+from enum import Enum
+
 from codeallybasic.UnitTestBase import UnitTestBase
 
 from codeallybasic.ConfigurationLocator import XDG_CONFIG_HOME_ENV_VAR
@@ -24,6 +26,32 @@ from unittest import main as unitTestMain
 
 BASE_FILE_NAME: str = 'FakeConfiguration.ini'
 MODULE_NAME:    str = 'FakeModule'
+
+
+class FakeEnum(Enum):
+    TheWanderer = 'The Wanderer'
+    Mentiroso   = 'Mentiroso'
+    FakeBrandon = 'Faker Extraordinaire'
+    NotSet      = 'Not Set'
+
+    @classmethod
+    def deSerialize(cls, value: str) -> 'FakeEnum':
+
+        match value:
+            case FakeEnum.TheWanderer.value:
+                gitHubUrlOption: FakeEnum = FakeEnum.TheWanderer
+            case FakeEnum.Mentiroso.value:
+                gitHubUrlOption = FakeEnum.Mentiroso
+            case FakeEnum.FakeBrandon.value:
+                gitHubUrlOption = FakeEnum.FakeBrandon
+            case _:
+                raise Exception('Unknown FakeEnum')
+
+        return gitHubUrlOption
+
+
+DEFAULT_FAKE_ENUM: FakeEnum = FakeEnum.FakeBrandon
+
 
 #
 #  TODO: Convert from list of ConfigurationNameValue to another dictionary
@@ -45,7 +73,8 @@ SECTION_FRAN: Section = Section(
 SECTION_HASII: Section = Section(
     [
         ConfigurationNameValue(name=PropertyName('hasiiHairColor'),   defaultValue='Fake'),
-        ConfigurationNameValue(name=PropertyName('hasiiDisposition'), defaultValue='Funky')
+        ConfigurationNameValue(name=PropertyName('hasiiDisposition'), defaultValue='Funky'),
+        ConfigurationNameValue(name=PropertyName('fakeEnum'),         defaultValue=DEFAULT_FAKE_ENUM.value),
      ]
 )
 
@@ -73,6 +102,16 @@ class FakeConfiguration(ConfigurationProperties):
     @ozzeeHairColor.setter
     @configurationSetter(sectionName='Ozzee')
     def ozzeeHairColor(self, newValue: str):
+        pass
+
+    @property
+    @configurationGetter(sectionName='HASII', deserializeFunction=FakeEnum.deSerialize)
+    def fakeEnum(self) -> FakeEnum:
+        return FakeEnum.NotSet      # Never executed
+
+    @fakeEnum.setter
+    @configurationSetter(sectionName='HASII', isEnum=True)
+    def fakeEnum(self, newValue: FakeEnum):
         pass
 
 
@@ -123,6 +162,22 @@ class TestConfigurationProperties(UnitTestBase):
         self.assertEqual('Blue', self._fakeConfig.ozzeeHairColor, 'changed value')
 
         self.logger.info(f'{self._fakeConfig.ozzeeHairColor=}')
+
+    def testEnumerationSet(self):
+
+        saveValue:     FakeEnum = self._fakeConfig.fakeEnum
+        expectedValue: FakeEnum = FakeEnum.Mentiroso
+
+        self._fakeConfig.fakeEnum = expectedValue
+
+        actualValue: FakeEnum = self._fakeConfig.fakeEnum
+
+        self.assertEqual(expectedValue, actualValue, 'Not correctly set')
+
+        self._fakeConfig.fakeEnum = saveValue
+
+    def testEnumerationGet(self):
+        pass
 
 
 def suite() -> TestSuite:
