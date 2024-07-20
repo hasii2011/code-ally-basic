@@ -53,6 +53,30 @@ class FakeEnum(Enum):
 DEFAULT_FAKE_ENUM: FakeEnum = FakeEnum.FakeBrandon
 
 
+class SoundVolume(Enum):
+
+    Low    = 0.1
+    Medium = 0.5
+    High   = 1.0
+
+    @classmethod
+    def toEnum(cls, strValue: str) -> 'SoundVolume':
+
+        match strValue:
+            case 'Low':
+                soundVolume: SoundVolume = SoundVolume.Low
+            case 'Medium':
+                soundVolume = SoundVolume.Medium
+            case 'High':
+                soundVolume = SoundVolume.High
+            case _:
+                raise Exception(f'Bad enumeration {strValue}')
+
+        return soundVolume
+
+
+DEFAULT_SOUND_VOLUME: SoundVolume = SoundVolume.Medium
+
 #
 #  TODO: Convert from list of ConfigurationNameValue to another dictionary
 #
@@ -75,6 +99,7 @@ SECTION_HASII: Section = Section(
         ConfigurationNameValue(name=PropertyName('hasiiHairColor'),   defaultValue='Fake'),
         ConfigurationNameValue(name=PropertyName('hasiiDisposition'), defaultValue='Funky'),
         ConfigurationNameValue(name=PropertyName('fakeEnum'),         defaultValue=DEFAULT_FAKE_ENUM.value),
+        ConfigurationNameValue(name=PropertyName('soundVolume'),      defaultValue=DEFAULT_SOUND_VOLUME.name),
      ]
 )
 
@@ -112,6 +137,16 @@ class FakeConfiguration(ConfigurationProperties):
     @fakeEnum.setter
     @configurationSetter(sectionName='HASII', isEnum=True)
     def fakeEnum(self, newValue: FakeEnum):
+        pass
+
+    @property
+    @configurationGetter(sectionName='HASII', deserializeFunction=SoundVolume.toEnum)
+    def soundVolume(self) -> SoundVolume:
+        return SoundVolume.Low  # Not used
+
+    @soundVolume.setter
+    @configurationSetter(sectionName='HASII', enumUseName=True)
+    def soundVolume(self, newValue: SoundVolume):
         pass
 
 
@@ -176,8 +211,18 @@ class TestConfigurationProperties(UnitTestBase):
 
         self._fakeConfig.fakeEnum = saveValue
 
-    def testEnumerationGet(self):
-        pass
+    def testEnumerationSetName(self):
+
+        saveValue:     SoundVolume = self._fakeConfig.soundVolume
+        expectedValue: SoundVolume = SoundVolume.High
+
+        self._fakeConfig.soundVolume = expectedValue
+
+        actualValue: SoundVolume = self._fakeConfig.soundVolume
+
+        self.assertEqual(expectedValue, actualValue, 'Name enum not correctly set')
+
+        self._fakeConfig.soundVolume = saveValue
 
 
 def suite() -> TestSuite:

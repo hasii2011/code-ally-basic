@@ -20,7 +20,7 @@ from pathlib import Path
 from codeallybasic.ConfigurationLocator import ConfigurationLocator
 
 
-def configurationSetter(sectionName: str, isEnum: bool = False):
+def configurationSetter(sectionName: str, isEnum: bool = False, enumUseName: bool = False):
 
     def decoratorConfigurationSetter(func):
         @wraps(func)
@@ -33,6 +33,8 @@ def configurationSetter(sectionName: str, isEnum: bool = False):
 
             if isEnum is True:
                 configParser.set(sectionName, f'{func.__name__}', args[1].value)
+            elif enumUseName is True:
+                configParser.set(sectionName, f'{func.__name__}', args[1].name)
             else:
                 configParser.set(sectionName, f'{func.__name__}', str(args[1]))
             baseConfiguration.saveConfiguration()
