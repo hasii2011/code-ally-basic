@@ -17,6 +17,8 @@ from configparser import ConfigParser
 
 from pathlib import Path
 
+from deprecated import deprecated
+
 from codeallybasic.ConfigurationLocator import ConfigurationLocator
 
 
@@ -104,6 +106,7 @@ Section  = NewType('Section',  List[ConfigurationNameValue])
 Sections = NewType('Sections', Dict[SectionName, Section])
 
 
+@deprecated(reason='Use DynamicConfiguration')
 class ConfigurationProperties:
     """
     This is the base class for component configuration.
