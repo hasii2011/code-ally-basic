@@ -3,6 +3,7 @@ from os import getcwd
 
 from os import environ as osEnviron
 from os import sep as osSep
+from pathlib import Path
 
 from unittest import TestSuite
 from unittest import main as unitTestMain
@@ -32,12 +33,26 @@ class TestResourceManager(UnitTestBase):
         except KeyError:
             pass    # May or may not exist; don't care
 
-        expectedName: str = f'{getcwd()}{osSep}{TESTS_RESOURCES_PATH}{osSep}{TEST_CONFIGURATION_FILE}'
+        cwd = getcwd()  # Should be at root of PyCharm project
+        expectedName: str = f'{cwd}{osSep}{TESTS_RESOURCES_PATH}{osSep}{TEST_CONFIGURATION_FILE}'
         rm: ResourceManager = ResourceManager()
         fqFileName: str = rm.retrieveResourcePath(bareFileName=TEST_CONFIGURATION_FILE,
                                                   resourcePath=TESTS_RESOURCES_PATH,
                                                   packageName=TESTS_RESOURCES_PACKAGE)
-        self.assertEqual(expectedName, fqFileName, 'Ooop, broken')
+        self.assertEqual(expectedName, fqFileName, 'Oops, broken')
+
+    def testComputeResourcePath(self):
+        try:
+            del osEnviron[ResourceManager.RESOURCE_ENV_VAR]
+        except KeyError:
+            pass    # May or may not exist; don't care
+
+        rm: ResourceManager = ResourceManager()
+
+        cwd = getcwd()  # Should be at root of PyCharm project
+        expectedPath: Path = Path(f'{cwd}{osSep}{TESTS_RESOURCES_PATH}')
+        actualPath:   Path = rm.computeResourcePath(resourcePath=TESTS_RESOURCES_PATH, packageName=TESTS_RESOURCES_PACKAGE)
+        self.assertEqual(expectedPath, actualPath, 'Oops, broken')
 
     def testInApplication(self):
 
