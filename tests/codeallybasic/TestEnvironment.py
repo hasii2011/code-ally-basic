@@ -44,7 +44,7 @@ class TestEnvironmentBase(UnitTestBase):
             pass       # May or may not exist; don't care
         # noinspection PyUnusedLocal
         eb: Environment = Environment(printCallback=self._printCallback)
-        self.assertEquals(eb.projectDirectory, '', 'Should be empty')
+        self.assertEqual(eb.projectDirectory, '', 'Should be empty')
 
     def _printCallback(self, msg: str):
         print(msg)
