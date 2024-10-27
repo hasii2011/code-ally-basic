@@ -1,0 +1,23 @@
+
+notifications:
+  email:
+    recipients:
+      - humberto.a.sanchez.ii@gmail.com
+    on_success: change # default: change
+    on_failure: always # default: always
+
+language: python
+
+cache: pip
+
+python:
+  - "3.12.4"
+
+# command to install dependencies
+install:
+  - pip install buildlackey==1.7.0
+  - pip install Deprecated==1.2.14
+
+
+# command to run tests
+script: unittests
