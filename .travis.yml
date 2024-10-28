@@ -8,7 +8,7 @@ notifications:
 
 language: python
 
-dist: bionic
+dist: jammy
 
 cache: pip
 
