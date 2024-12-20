@@ -10,6 +10,7 @@ from pathlib import Path
 
 from codeallybasic.ConfigurationLocator import ConfigurationLocator
 from codeallybasic.Dimensions import Dimensions
+from codeallybasic.SecureConversions import SecureConversions
 from codeallybasic.SingletonV3 import SingletonV3
 from codeallybasic.UnitTestBase import UnitTestBase
 
@@ -64,13 +65,15 @@ oglDynoProperties: ValueDescriptions = ValueDescriptions(
         KeyName('noteText'):       ValueDescription(defaultValue='This is the note text'),
         KeyName('valueEnum'):      ValueDescription(defaultValue=UnitTestEnumeration.HUMBERTO.value,  enumUseValue=True, deserializer=UnitTestEnumeration),
         KeyName('nameEnum'):       ValueDescription(defaultValue=UnitTestEnumeration.OZZEE.__str__(), enumUseName=True,  deserializer=UnitTestEnumeration.deSerialize),
-        KeyName('noteDimensions'): ValueDescription(defaultValue=str(Dimensions(100, 50)),                               deserializer=Dimensions.deSerialize)
+        KeyName('noteDimensions'): ValueDescription(defaultValue=str(Dimensions(100, 50)),                               deserializer=Dimensions.deSerialize),
+        KeyName('showInternals'):  ValueDescription(defaultValue='True',                                                 deserializer=SecureConversions.secureBoolean),
+
     }
 )
 
 sections: Sections = Sections(
     {
-        SectionName('Ogl'): oglDynoProperties
+        SectionName('DynamicTestSection'): oglDynoProperties
     }
 )
 
@@ -116,6 +119,19 @@ class TestDynamicConfiguration(UnitTestBase):
         if self._savePath is not None:
             self._prefsFile.unlink(missing_ok=True)
             self._savePath.rename(str(self._prefsFile))
+
+    def testBooleanTrue(self):
+        dyno: DynamiteConfiguration = DynamiteConfiguration()
+
+        saveValue:     bool = dyno.showInternals
+        expectedValue: bool = True
+#         dyno.showInternals  = expectedValue
+
+        actualValue:   bool = dyno.showInternals
+
+        dyno.showInternals = saveValue
+
+        self.assertEqual(expectedValue, actualValue, 'Boolean set `True` not working')
 
     def testDefaultInstantiation(self):
         dyno: DynamiteConfiguration = DynamiteConfiguration()

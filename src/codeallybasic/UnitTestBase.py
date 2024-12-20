@@ -6,8 +6,7 @@ import logging.config
 
 import json
 
-from importlib.abc import Traversable
-
+from importlib.resources.abc import Traversable
 from importlib.resources import files
 
 from unittest import TestCase

@@ -144,6 +144,7 @@ class ConfigurationProperties:
         Save data to the configuration file
         """
         with self._fqFileName.open(mode='w') as fd:
+            # noinspection PyTypeChecker
             self._configParser.write(fd)
 
     def _loadConfiguration(self):
@@ -175,7 +176,7 @@ class ConfigurationProperties:
             section: Section = self._sections[sectionName]
             for c in section:
                 cfgNameValue: ConfigurationNameValue = cast(ConfigurationNameValue, c)
-                self.logger.info(f'{cfgNameValue=}')
+                self.logger.debug(f'{cfgNameValue=}')
                 if self._configParser.has_option(sectionName, cfgNameValue.name) is False:
                     self._addMissingPreference(sectionName=sectionName, preferenceName=cfgNameValue.name, value=cfgNameValue.defaultValue)
 

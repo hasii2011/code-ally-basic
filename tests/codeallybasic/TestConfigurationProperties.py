@@ -39,15 +39,15 @@ class FakeEnum(Enum):
 
         match value:
             case FakeEnum.TheWanderer.value:
-                gitHubUrlOption: FakeEnum = FakeEnum.TheWanderer
+                fakeEnum: FakeEnum = FakeEnum.TheWanderer
             case FakeEnum.Mentiroso.value:
-                gitHubUrlOption = FakeEnum.Mentiroso
+                fakeEnum = FakeEnum.Mentiroso
             case FakeEnum.FakeBrandon.value:
-                gitHubUrlOption = FakeEnum.FakeBrandon
+                fakeEnum = FakeEnum.FakeBrandon
             case _:
                 raise Exception('Unknown FakeEnum')
 
-        return gitHubUrlOption
+        return fakeEnum
 
 
 DEFAULT_FAKE_ENUM: FakeEnum = FakeEnum.FakeBrandon

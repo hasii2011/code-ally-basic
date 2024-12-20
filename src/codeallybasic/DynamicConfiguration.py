@@ -177,7 +177,7 @@ class DynamicConfiguration:
             for propName in propertyDescriptions.keys():
 
                 desc: ValueDescription = propertyDescriptions[propName]
-                self._logger.info(f'{desc=}')
+                self._logger.debug(f'{desc=}')
                 if self._configParser.has_option(sectionName, propName) is False:
                     self._addMissingKey(sectionName=sectionName, preferenceName=propName, value=desc.defaultValue)
 
