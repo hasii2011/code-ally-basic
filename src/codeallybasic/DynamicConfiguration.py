@@ -1,6 +1,7 @@
 
 from typing import Callable
 from typing import Dict
+from typing import List
 from typing import cast
 from typing import NewType
 from typing import Any
@@ -24,6 +25,7 @@ SectionName  = NewType('SectionName', str)
 
 
 Deserializer = Callable[[str], Any]
+StringList   = NewType('StringList', List[str])
 
 
 @dataclass
@@ -36,6 +38,7 @@ class ValueDescription:
     deserializer: Deserializer = cast(Deserializer, None)
     enumUseValue: bool         = False      # Set to True if you want to use the enum value; Use constructor to deserialize
     enumUseName:  bool         = False      # Set to True if you want to use the enum name;  Create deserialize method
+    isStringList: bool         = False      # Set to True to get free serialization and deserialization
 
 
 ValueDescriptions = NewType('ValueDescriptions', Dict[KeyName,     ValueDescription])
@@ -102,7 +105,10 @@ class DynamicConfiguration:
         if valueDescription.deserializer is not None:
             value: Any = valueDescription.deserializer(valueStr)
         else:
-            value = valueStr
+            if valueDescription.isStringList is True:
+                value = DynamicConfiguration.stringToStringList(valueStr)
+            else:
+                value = valueStr
 
         return value
 
@@ -132,10 +138,36 @@ class DynamicConfiguration:
                 configParser.set(result.sectionName, key, valueStr)
             elif valueDescription.enumUseName is True:
                 configParser.set(result.sectionName, key, value.name)
+            elif isinstance(value, list) is True:
+                configParser.set(result.sectionName, key, DynamicConfiguration.stringListToString(StringList(value)))
             else:
                 configParser.set(result.sectionName, key, str(value))
 
             self.saveConfiguration()
+
+    @classmethod
+    def stringToStringList(cls, string: str, delimiter: str = ',') -> StringList:
+        """
+
+        Args:
+            string:   The value that needs converting
+            delimiter:  The delimiter separating the strings
+
+        Returns:  A StringList
+        """
+        return StringList(string.split(sep=delimiter))
+
+    @classmethod
+    def stringListToString(cls, stringList: StringList, delimiter: str = ',') -> str:
+        """
+
+        Args:
+            stringList:  The string list
+            delimiter:   Character to use as delimiter
+
+        Returns:  A string delimited by the delimiter
+        """
+        return f'{delimiter}'.join(stringList)
 
     def saveConfiguration(self):
         """
@@ -181,9 +213,14 @@ class DynamicConfiguration:
                 if self._configParser.has_option(sectionName, propName) is False:
                     self._addMissingKey(sectionName=sectionName, preferenceName=propName, value=desc.defaultValue)
 
-    def _addMissingKey(self, sectionName: str, preferenceName: str, value: str):
+    def _addMissingKey(self, sectionName: str, preferenceName: str, value: str | StringList):
 
-        self._configParser.set(sectionName, preferenceName, value)
+        if isinstance(value, list):
+            strValue: str = DynamicConfiguration.stringListToString(value)
+            self._configParser.set(sectionName, preferenceName, strValue)
+        else:
+            self._configParser.set(sectionName, preferenceName, value)
+
         self.saveConfiguration()
 
     def _lookupKey(self, searchKeyName: KeyName) -> LookupResult:

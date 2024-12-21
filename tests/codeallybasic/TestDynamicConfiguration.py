@@ -1,8 +1,8 @@
 
+from typing import List
 from typing import cast
 
-from unittest import TestSuite
-from unittest import main as unitTestMain
+from copy import deepcopy
 
 from enum import Enum
 
@@ -10,6 +10,7 @@ from pathlib import Path
 
 from codeallybasic.ConfigurationLocator import ConfigurationLocator
 from codeallybasic.Dimensions import Dimensions
+from codeallybasic.DynamicConfiguration import StringList
 from codeallybasic.SecureConversions import SecureConversions
 from codeallybasic.SingletonV3 import SingletonV3
 from codeallybasic.UnitTestBase import UnitTestBase
@@ -21,6 +22,9 @@ from codeallybasic.DynamicConfiguration import ValueDescriptions
 from codeallybasic.DynamicConfiguration import KeyName
 from codeallybasic.DynamicConfiguration import SectionName
 from codeallybasic.DynamicConfiguration import Sections
+
+from unittest import TestSuite
+from unittest import main as unitTestMain
 
 
 class UnitTestEnumeration(Enum):
@@ -56,6 +60,9 @@ class UnitTestEnumeration(Enum):
         return self.name
 
 
+STRING_LIST_PROPERTY: StringList = StringList(['Fran', 'Humberto', 'Ozzee'])
+SINGLE_STR:           str        = ','.join(STRING_LIST_PROPERTY)
+
 MODULE_NAME:           str = 'dynamite'
 PREFERENCES_FILE_NAME: str = f'{MODULE_NAME}.ini'
 
@@ -67,7 +74,7 @@ oglDynoProperties: ValueDescriptions = ValueDescriptions(
         KeyName('nameEnum'):       ValueDescription(defaultValue=UnitTestEnumeration.OZZEE.__str__(), enumUseName=True,  deserializer=UnitTestEnumeration.deSerialize),
         KeyName('noteDimensions'): ValueDescription(defaultValue=str(Dimensions(100, 50)),                               deserializer=Dimensions.deSerialize),
         KeyName('showInternals'):  ValueDescription(defaultValue='True',                                                 deserializer=SecureConversions.secureBoolean),
-
+        KeyName('stringList'):     ValueDescription(defaultValue=STRING_LIST_PROPERTY, isStringList=True)
     }
 )
 
@@ -119,6 +126,28 @@ class TestDynamicConfiguration(UnitTestBase):
         if self._savePath is not None:
             self._prefsFile.unlink(missing_ok=True)
             self._savePath.rename(str(self._prefsFile))
+
+    def testStrList(self):
+        dyno:    DynamiteConfiguration = DynamiteConfiguration()
+        strList: List[str]             = dyno.stringList
+
+        self.assertEqual(STRING_LIST_PROPERTY, strList, 'Incorrectly deserialized')
+
+    def testModifyStrList(self):
+
+        dyno:           DynamiteConfiguration = DynamiteConfiguration()
+        # noinspection PyTypeChecker
+        saveStrList:    StringList             = dyno.stringList
+        updatedStrList: StringList             = deepcopy(saveStrList)
+
+        updatedStrList.append('Opie')
+
+        dyno.stringList = updatedStrList
+        actualList: StringList = dyno.stringList
+
+        self.assertEqual(updatedStrList, actualList, 'Oops did not update correctly')
+
+        dyno.stringList = saveStrList
 
     def testBooleanTrue(self):
         dyno: DynamiteConfiguration = DynamiteConfiguration()
