@@ -94,7 +94,7 @@ class DynamicConfiguration:
         Returns:  The correctly typed value
         """
 
-        self._logger.info(f'{attrName}')
+        self._logger.debug(f'{attrName}')
 
         configParser:     ConfigParser     = self._configParser
         result:           LookupResult     = self._lookupKey(searchKeyName=KeyName(attrName))
