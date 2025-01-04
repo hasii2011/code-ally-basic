@@ -14,6 +14,7 @@ from codeallybasic.DynamicConfiguration import StringList
 from codeallybasic.SecureConversions import SecureConversions
 from codeallybasic.SingletonV3 import SingletonV3
 from codeallybasic.UnitTestBase import UnitTestBase
+from codeallybasic.PassThroughInterpolation import PassThroughInterpolation
 
 from codeallybasic.DynamicConfiguration import ValueDescription
 from codeallybasic.DynamicConfiguration import DynamicConfiguration
@@ -66,6 +67,8 @@ SINGLE_STR:           str        = ','.join(STRING_LIST_PROPERTY)
 MODULE_NAME:           str = 'dynamite'
 PREFERENCES_FILE_NAME: str = f'{MODULE_NAME}.ini'
 
+NO_INTERPOLATION_DEFAULT: str = '%d %b %Y %H:%M'
+
 
 oglDynoProperties: ValueDescriptions = ValueDescriptions(
     {
@@ -74,7 +77,8 @@ oglDynoProperties: ValueDescriptions = ValueDescriptions(
         KeyName('nameEnum'):       ValueDescription(defaultValue=UnitTestEnumeration.OZZEE.__str__(), enumUseName=True,  deserializer=UnitTestEnumeration.deSerialize),
         KeyName('noteDimensions'): ValueDescription(defaultValue=str(Dimensions(100, 50)),                               deserializer=Dimensions.deSerialize),
         KeyName('showInternals'):  ValueDescription(defaultValue='True',                                                 deserializer=SecureConversions.secureBoolean),
-        KeyName('stringList'):     ValueDescription(defaultValue=STRING_LIST_PROPERTY, isStringList=True)
+        KeyName('stringList'):     ValueDescription(defaultValue=STRING_LIST_PROPERTY, isStringList=True),
+        KeyName('noInterpolation'): ValueDescription(defaultValue=NO_INTERPOLATION_DEFAULT)
     }
 )
 
@@ -88,7 +92,10 @@ sections: Sections = Sections(
 class DynamiteConfiguration(DynamicConfiguration, metaclass=SingletonV3):
 
     def __init__(self):
-        super().__init__(baseFileName=f'{PREFERENCES_FILE_NAME}', moduleName=MODULE_NAME, sections=sections)
+        passThroughInterpolation: PassThroughInterpolation = PassThroughInterpolation(
+            ['noInterpolation']
+        )
+        super().__init__(baseFileName=f'{PREFERENCES_FILE_NAME}', moduleName=MODULE_NAME, sections=sections, interpolation=passThroughInterpolation)
 
 
 class TestDynamicConfiguration(UnitTestBase):
@@ -126,6 +133,11 @@ class TestDynamicConfiguration(UnitTestBase):
         if self._savePath is not None:
             self._prefsFile.unlink(missing_ok=True)
             self._savePath.rename(str(self._prefsFile))
+
+    def testNoInterpolation(self):
+        dyno:    DynamiteConfiguration = DynamiteConfiguration()
+
+        self.assertEqual(NO_INTERPOLATION_DEFAULT, dyno.noInterpolation, 'Hmm did not pass through')
 
     def testStrList(self):
         dyno:    DynamiteConfiguration = DynamiteConfiguration()

@@ -1,4 +1,5 @@
 
+from typing import Optional
 from typing import Callable
 from typing import Dict
 from typing import List
@@ -12,6 +13,7 @@ from logging import getLogger
 from dataclasses import dataclass
 
 from configparser import ConfigParser
+from configparser import Interpolation
 
 from pathlib import Path
 
@@ -64,7 +66,7 @@ class DynamicConfiguration:
     It uses Python's ConfigParser as the backing for the values
 
     """
-    def __init__(self, moduleName: str, baseFileName: str, sections: Sections):
+    def __init__(self, moduleName: str, baseFileName: str, sections: Sections, interpolation: Optional[Interpolation] = None):
         """
 
         Args:
@@ -79,7 +81,10 @@ class DynamicConfiguration:
         locator: ConfigurationLocator = ConfigurationLocator()
 
         self._fqFileName:   Path         = locator.applicationPath(f'{moduleName}') / baseFileName
-        self._configParser: ConfigParser = ConfigParser()
+        if interpolation is None:
+            self._configParser: ConfigParser = ConfigParser()
+        else:
+            self._configParser = ConfigParser(interpolation=interpolation)
 
         self._configParser.optionxform = self._toStr    # type: ignore
         self._loadConfiguration()
