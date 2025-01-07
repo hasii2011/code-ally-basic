@@ -1,7 +1,6 @@
 
 version: '2.1'
-# runtests is installed command from buildlackey
-# Updated to ignore missing environment variables
+
 orbs:
   python: circleci/python@2.1.1
 
