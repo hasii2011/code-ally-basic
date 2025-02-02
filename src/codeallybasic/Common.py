@@ -1,4 +1,6 @@
 
+from re import sub as regExSub
+
 #
 # https://www.codetable.net/hex/a
 #
@@ -38,3 +40,28 @@ def apply(callback, args=None, kwargs=None):
     if kwargs is None:
         kwargs = {}
     return callback(*args, **kwargs)
+
+
+def fixURL(oldURL: str) -> str:
+    """
+    Makes the URLs returned by the GitHub API actually user linkable when I
+    generate the markdown file.
+
+    e.g.
+
+    https://api.github.com/repos/hasii2011/code-ally-advanced
+
+    gets turned into
+
+    https://github.com//hasii2011/code-ally-advanced
+
+    Args:
+        oldURL:  The URL we have to fix
+
+    Returns:  A linkable URL
+    """
+
+    apiStrip:  str = regExSub(pattern=r'api.',   repl='', string=oldURL)
+    repoStrip: str = regExSub(pattern=r'repos/', repl='', string=apiStrip)
+
+    return repoStrip
