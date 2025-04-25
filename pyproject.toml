@@ -7,10 +7,18 @@ name        = 'codeallybasic'
 dynamic     = ["version"]
 description = 'Humberto`s Basic Common Code'
 readme      = "README.md"
-license     = {text = 'GNU AFFERO GENERAL PUBLIC LICENSE'}
 authors     = [{name = 'Humberto A. Sanchez II', email = 'Humberto.A.Sanchez.II@gmail.com'}]
 maintainers = [{name = 'Humberto A. Sanchez II', email = 'Humberto.A.Sanchez.II@gmail.com'}]
 keywords    = ['pyut', 'python',]
+license     = 'AGPL-1.0-or-later'
+
+classifiers = [
+  "Programming Language :: Python",
+  "Intended Audience :: Developers",
+  "License AGPL-1.0-or-later",
+  "Operating System :: MacOS :: MacOS X",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+]
 
 dependencies = [
   'Deprecated==1.2.14',
@@ -19,7 +27,7 @@ dependencies = [
 [project.optional-dependencies]
 test = [
     "html-testRunner~=1.2.1",
-    "mypy== 1.12.1",
+    "mypy== 1.14.1",
     "mypy-extensions==1.0.0",
     "typing_extensions==4.10.0",
     "types-Deprecated==1.2.9.20240311",
@@ -31,6 +39,7 @@ deploy = [
     "setuptools==75.7.0",
     "twine==6.0.1",
     "build==1.2.2.post1",
+    "pkginfo==1.12.1.2"
 ]
 
 [project.urls]
