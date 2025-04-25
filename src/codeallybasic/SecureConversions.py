@@ -78,3 +78,17 @@ class SecureConversions:
         assert possibleFloatStr is not None, 'Cannot convert None value to float'
 
         return float(possibleFloatStr)
+
+    @classmethod
+    def secureString(cls, possibleString: str) -> str:
+        """
+
+        Args:
+            possibleString:  the string to validate
+
+        Returns: the same string, if string = None, return an empty string.
+        """
+
+        if possibleString is None:
+            possibleString = ''
+        return possibleString

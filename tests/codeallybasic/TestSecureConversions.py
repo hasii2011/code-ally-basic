@@ -62,6 +62,18 @@ class TestSecureConversions(UnitTestBase):
         with self.assertRaises(AssertionError):
             SecureConversions.secureFloat(NONE_STR)
 
+    def testSecureStringGood(self):
+        goodString: str = 'I am good'
+        actualStr: str = SecureConversions.secureString(possibleString=goodString)
+
+        self.assertEqual(goodString, actualStr, 'Something did not convert')
+
+    def testSecureStringNone(self):
+        noneString: str = cast(str, None)
+        actualStr:  str = SecureConversions.secureString(possibleString=noneString)
+
+        self.assertEqual('', actualStr, 'Should have received an empty stirng')
+
 
 def suite() -> TestSuite:
     import unittest

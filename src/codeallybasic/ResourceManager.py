@@ -2,7 +2,7 @@
 from logging import Logger
 from logging import getLogger
 
-from importlib.resources.abc import  Traversable
+from importlib.resources.abc import Traversable
 from importlib.resources import files
 
 from pathlib import Path
