@@ -8,11 +8,9 @@ from pubsub import pub
 Topic = NewType('Topic', str)
 
 
-class BaseEventEngine:
+class BasePubSubEngine:
     """
     Wrapper class to hide underlying implementation
-
-    use the codeallybasic version when it becomes available
     """
     def _subscribe(self, topic: Topic, callback: Callable):
         """
