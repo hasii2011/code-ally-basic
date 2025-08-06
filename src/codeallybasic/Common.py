@@ -1,13 +1,15 @@
 
 from re import sub as regExSub
 
+from deprecated import deprecated
+
 #
 # https://www.codetable.net/hex/a
 #
 XML_END_OF_LINE_MARKER: str = '&#xA;'
 
-
-def cmp(left, right):
+@deprecated(version='1.15.0', reason='Use the class method in Basic')
+def cmp(left, right) -> int:
     """
     Python 2 stand in
 
@@ -25,6 +27,7 @@ def cmp(left, right):
     return (left > right) - (left < right)
 
 
+@deprecated(version='1.15.0', reason='Use the class method in Basic')
 def apply(callback, args=None, kwargs=None):
     """
     Python 2 stand in
@@ -42,6 +45,7 @@ def apply(callback, args=None, kwargs=None):
     return callback(*args, **kwargs)
 
 
+@deprecated(version='1.15.0', reason='Use the class method in Basic')
 def fixURL(oldURL: str) -> str:
     """
     Makes the URLs returned by the GitHub API actually user linkable when I
