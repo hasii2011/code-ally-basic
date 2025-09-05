@@ -59,7 +59,7 @@ class TestBasic(UnitTestBase):
 
         tmpDir = gettempdir()
         tmpProjectsBase: Path = Path(tmpDir) / 'bogusDirectoryToDelete' / 'EvenDeeperDirectory'
-        tmpProjectsBase.mkdir(exist_ok=True)
+        tmpProjectsBase.mkdir(parents=True, exist_ok=True)
 
         Basic.deleteDirectory(tmpProjectsBase)
 

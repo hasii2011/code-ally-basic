@@ -72,12 +72,12 @@ NO_INTERPOLATION_DEFAULT: str = '%d %b %Y %H:%M'
 
 oglDynoProperties: ValueDescriptions = ValueDescriptions(
     {
-        KeyName('noteText'):       ValueDescription(defaultValue='This is the note text'),
-        KeyName('valueEnum'):      ValueDescription(defaultValue=UnitTestEnumeration.HUMBERTO.value,  enumUseValue=True, deserializer=UnitTestEnumeration),
-        KeyName('nameEnum'):       ValueDescription(defaultValue=UnitTestEnumeration.OZZEE.__str__(), enumUseName=True,  deserializer=UnitTestEnumeration.deSerialize),
-        KeyName('noteDimensions'): ValueDescription(defaultValue=str(Dimensions(100, 50)),                               deserializer=Dimensions.deSerialize),
-        KeyName('showInternals'):  ValueDescription(defaultValue='True',                                                 deserializer=SecureConversions.secureBoolean),
-        KeyName('stringList'):     ValueDescription(defaultValue=STRING_LIST_PROPERTY, isStringList=True),
+        KeyName('noteText'):        ValueDescription(defaultValue='This is the note text'),
+        KeyName('valueEnum'):       ValueDescription(defaultValue=UnitTestEnumeration.HUMBERTO.value,  enumUseValue=True, deserializer=UnitTestEnumeration),
+        KeyName('nameEnum'):        ValueDescription(defaultValue=UnitTestEnumeration.OZZEE.__str__(), enumUseName=True,  deserializer=UnitTestEnumeration.deSerialize),
+        KeyName('noteDimensions'):  ValueDescription(defaultValue=str(Dimensions(100, 50)),                               deserializer=Dimensions.deSerialize),
+        KeyName('showInternals'):   ValueDescription(defaultValue='True',                                                 deserializer=SecureConversions.secureBoolean),
+        KeyName('stringList'):      ValueDescription(defaultValue=STRING_LIST_PROPERTY, isStringList=True),
         KeyName('noInterpolation'): ValueDescription(defaultValue=NO_INTERPOLATION_DEFAULT)
     }
 )

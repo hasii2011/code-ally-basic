@@ -30,7 +30,7 @@
             "level": "INFO",
             "propagate": "False"
         },
-        "tests.UnitTestBase": {
+        "codeallybasic.UnitTestBase": {
             "level":     "INFO",
             "propagate": "False"
         }
