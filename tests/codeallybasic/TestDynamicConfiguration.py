@@ -4,98 +4,28 @@ from typing import cast
 
 from copy import deepcopy
 
-from enum import Enum
 
 from pathlib import Path
 
 from codeallybasic.ConfigurationLocator import ConfigurationLocator
 from codeallybasic.Dimensions import Dimensions
 from codeallybasic.DynamicConfiguration import StringList
-from codeallybasic.SecureConversions import SecureConversions
-from codeallybasic.SingletonV3 import SingletonV3
 from codeallybasic.UnitTestBase import UnitTestBase
-from codeallybasic.PassThroughInterpolation import PassThroughInterpolation
 
-from codeallybasic.DynamicConfiguration import ValueDescription
 from codeallybasic.DynamicConfiguration import DynamicConfiguration
 from codeallybasic.DynamicConfiguration import UnDefinedValueDescription
-from codeallybasic.DynamicConfiguration import ValueDescriptions
-from codeallybasic.DynamicConfiguration import KeyName
-from codeallybasic.DynamicConfiguration import SectionName
-from codeallybasic.DynamicConfiguration import Sections
 
 from unittest import TestSuite
 from unittest import main as unitTestMain
 
+from tests.codeallybasic.DynamiteConfigCommonValues import MODULE_NAME
+from tests.codeallybasic.DynamiteConfigCommonValues import NO_INTERPOLATION_DEFAULT
+from tests.codeallybasic.DynamiteConfigCommonValues import PREFERENCES_FILE_NAME
+from tests.codeallybasic.DynamiteConfigCommonValues import STRING_LIST_PROPERTY
 
-class UnitTestEnumeration(Enum):
-    HUMBERTO = 'The Great One'
-    # noinspection SpellCheckingInspection
-    FRAN     = 'La Esposa'
-    OZZEE    = 'El Gato Malo'
+from tests.codeallybasic.DynamiteConfiguration import DynamiteConfiguration
 
-    @classmethod
-    def deSerialize(cls, value: str) -> 'UnitTestEnumeration':
-        """
-        You need a deSerializer when you store the enumerations by name.
-        Args:
-            value:
-
-        Returns:
-
-        """
-
-        match value:
-            case UnitTestEnumeration.HUMBERTO.name:
-                enumeration: UnitTestEnumeration = UnitTestEnumeration.HUMBERTO
-            case UnitTestEnumeration.FRAN.name:
-                enumeration = UnitTestEnumeration.FRAN
-            case UnitTestEnumeration.OZZEE.name:
-                enumeration = UnitTestEnumeration.OZZEE
-            case _:
-                raise Exception('Unknown enumeration value')
-
-        return enumeration
-
-    def __str__(self) -> str:
-        return self.name
-
-
-STRING_LIST_PROPERTY: StringList = StringList(['Fran', 'Humberto', 'Ozzee'])
-SINGLE_STR:           str        = ','.join(STRING_LIST_PROPERTY)
-
-MODULE_NAME:           str = 'dynamite'
-PREFERENCES_FILE_NAME: str = f'{MODULE_NAME}.ini'
-
-NO_INTERPOLATION_DEFAULT: str = '%d %b %Y %H:%M'
-
-
-oglDynoProperties: ValueDescriptions = ValueDescriptions(
-    {
-        KeyName('noteText'):        ValueDescription(defaultValue='This is the note text'),
-        KeyName('valueEnum'):       ValueDescription(defaultValue=UnitTestEnumeration.HUMBERTO.value,  enumUseValue=True, deserializer=UnitTestEnumeration),
-        KeyName('nameEnum'):        ValueDescription(defaultValue=UnitTestEnumeration.OZZEE.__str__(), enumUseName=True,  deserializer=UnitTestEnumeration.deSerialize),
-        KeyName('noteDimensions'):  ValueDescription(defaultValue=str(Dimensions(100, 50)),                               deserializer=Dimensions.deSerialize),
-        KeyName('showInternals'):   ValueDescription(defaultValue='True',                                                 deserializer=SecureConversions.secureBoolean),
-        KeyName('stringList'):      ValueDescription(defaultValue=STRING_LIST_PROPERTY, isStringList=True),
-        KeyName('noInterpolation'): ValueDescription(defaultValue=NO_INTERPOLATION_DEFAULT)
-    }
-)
-
-sections: Sections = Sections(
-    {
-        SectionName('DynamicTestSection'): oglDynoProperties
-    }
-)
-
-
-class DynamiteConfiguration(DynamicConfiguration, metaclass=SingletonV3):
-
-    def __init__(self):
-        passThroughInterpolation: PassThroughInterpolation = PassThroughInterpolation(
-            ['noInterpolation']
-        )
-        super().__init__(baseFileName=f'{PREFERENCES_FILE_NAME}', moduleName=MODULE_NAME, sections=sections, interpolation=passThroughInterpolation)
+from tests.codeallybasic.UnitTestEnumeration import UnitTestEnumeration
 
 
 class TestDynamicConfiguration(UnitTestBase):
