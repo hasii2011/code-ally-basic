@@ -18,6 +18,7 @@ from configparser import Interpolation
 from pathlib import Path
 
 from codeallybasic.ConfigurationLocator import ConfigurationLocator
+from codeallybasic.IConfigurationLocator import IConfigurationLocator
 
 PROTECTED_PROPERTY_INDICATOR: str = '_'
 PRIVATE_PROPERTY_INDICATOR:   str = '__'
@@ -66,7 +67,13 @@ class DynamicConfiguration:
     It uses Python's ConfigParser as the backing for the values
 
     """
-    def __init__(self, moduleName: str, baseFileName: str, sections: Sections, interpolation: Optional[Interpolation] = None):
+    def __init__(self,
+                 moduleName:           str,
+                 baseFileName:         str,
+                 sections:             Sections,
+                 interpolation:        Optional[Interpolation] = None,
+                 configurationLocator: Optional[IConfigurationLocator] = None
+                 ):
         """
 
         Args:
@@ -78,9 +85,12 @@ class DynamicConfiguration:
         self._logger:   Logger   = getLogger(__name__)
         self._sections: Sections = sections
 
-        locator: ConfigurationLocator = ConfigurationLocator()
+        if configurationLocator is None:
+            locator: IConfigurationLocator = ConfigurationLocator()
+        else:
+            locator = configurationLocator
 
-        self._fqFileName:   Path         = locator.applicationPath(f'{moduleName}') / baseFileName
+        self._fqFileName: Path = locator.applicationPath(f'{moduleName}') / baseFileName
         if interpolation is None:
             self._configParser: ConfigParser = ConfigParser()
         else:

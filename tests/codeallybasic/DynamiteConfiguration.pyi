@@ -1,7 +1,9 @@
+
 from codeallybasic.Dimensions import Dimensions
+from codeallybasic.DynamicConfiguration import StringList
 from tests.codeallybasic.UnitTestEnumeration import UnitTestEnumeration
+
 from typing import Any
-from typing import List
 
 
 class DynamiteConfiguration:
@@ -10,5 +12,5 @@ class DynamiteConfiguration:
     nameEnum: UnitTestEnumeration
     noteDimensions: Dimensions
     showInternals: Any
-    stringList: List[str]
+    stringList: StringList
     noInterpolation: str

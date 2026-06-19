@@ -6,13 +6,15 @@ from os import environ as osEnvironment
 
 from pathlib import Path
 
+from codeallybasic.IConfigurationLocator import IConfigurationLocator
+
 HOME_ENV_VAR:            str = 'HOME'
 XDG_CONFIG_HOME_ENV_VAR: str = 'XDG_CONFIG_HOME'   # defines the base directory relative to which user-specific configuration files should be stored.
 
 CONFIGURATION_DIRECTORY: str = '.config'
 
 
-class ConfigurationLocator:
+class ConfigurationLocator(IConfigurationLocator):
     """
     Try XDG_CONFIG_HOME
     then HOME

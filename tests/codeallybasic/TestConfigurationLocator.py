@@ -13,6 +13,8 @@ from codeallybasic.ConfigurationLocator import CONFIGURATION_DIRECTORY
 from codeallybasic.ConfigurationLocator import ConfigurationLocator
 
 from codeallybasic.UnitTestBase import UnitTestBase
+from tests.codeallybasic.AlternateConfigurationLocator import ALTERNATE_SAFE_PATH
+from tests.codeallybasic.AlternateConfigurationLocator import AlternateConfigurationLocator
 
 
 class TestConfigurationLocator(UnitTestBase):
@@ -72,6 +74,25 @@ class TestConfigurationLocator(UnitTestBase):
 
         self.assertEqual(fakeXDGPATH, configurationLocator.configurationHome, 'Configuration home should be a fake home directory')
 
+    def testAlternateConfigurationLocatorHome(self):
+
+        locator: AlternateConfigurationLocator = AlternateConfigurationLocator()
+        self.assertEqual(ALTERNATE_SAFE_PATH, locator.configurationHome, 'Fail not the correct base path')
+
+    def testAlternateConfigurationLocatorApplicationHome(self):
+
+        moduleName:   str = 'ozzee'
+
+        locator: AlternateConfigurationLocator = AlternateConfigurationLocator()
+
+        expectedApplicationPath: Path = Path(f'{ALTERNATE_SAFE_PATH}/ozzee')
+        actualApplicationPath:   Path = locator.applicationPath(f'{moduleName}')
+
+        self.assertEqual(expectedApplicationPath, actualApplicationPath, 'Not working')
+        #
+        # cleanup
+        #
+        Path.rmdir(actualApplicationPath)
 
 def suite() -> TestSuite:
 

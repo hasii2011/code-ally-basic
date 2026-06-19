@@ -12,7 +12,6 @@ from codeallybasic.Dimensions import Dimensions
 from codeallybasic.DynamicConfiguration import StringList
 from codeallybasic.UnitTestBase import UnitTestBase
 
-from codeallybasic.DynamicConfiguration import DynamicConfiguration
 from codeallybasic.DynamicConfiguration import UnDefinedValueDescription
 
 from unittest import TestSuite
@@ -149,8 +148,8 @@ class TestDynamicConfiguration(UnitTestBase):
 
         self.assertRaises(UnDefinedValueDescription, lambda: self._setBadValue(dyno))
 
-    def _setBadValue(self, dyno: DynamicConfiguration):
-        dyno.bogusKey = 'I am bogus'
+    def _setBadValue(self, dyno: DynamiteConfiguration):
+        dyno.bogusKey = 'I am bogus'        # type: ignore
 
 
 def suite() -> TestSuite:
