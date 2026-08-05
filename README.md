@@ -9,6 +9,7 @@ This project hosts common artifacts for various projects I am developing.  This 
 ___
 
 Written by <a href="mailto:humberto.a.sanchez.ii@gmail.com?subject=Hello Humberto">Humberto A. Sanchez II</a>  (C) 2026
+Written by <a href="mailto:email@humberto.a.sanchez.ii@gmail.com?subject=Hello Humberto">Humberto A. Sanchez II</a>  (C) 2026
 
 ## Note 
 For all kinds of problems, requests, enhancements, bug reports, etc., please drop me an e-mail.
