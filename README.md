@@ -3,6 +3,7 @@
 [![PyPI version](https://badge.fury.io/py/codeallybasic.svg)](https://badge.fury.io/py/codeallybasic)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](LICENSE)
 [![Made with Python](https://img.shields.io/badge/Made%20with-Python-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![GitHub Copilot: No](https://img.shields.io/badge/GitHub_Copilot-No-red?logo=github&style=flat-square)](https://github.com/hasii2011/code-ally-basic/wiki/GitHub-Copilot)
 
 This project hosts common artifacts for various projects I am developing.  This package does not include any wxPython dependency.
 
@@ -38,5 +39,6 @@ pip install .[deploy]
 
 Normally, the above is not used because this project uses a GitHub workflow that automatically deploys releases.
 
-[Copilot Statement](https://github.com/hasii2011/code-ally-basic/wiki/GitHub-Copilot).
+> [!NOTE]
+> **I do not consent to GitHub's use of this project's code in Copilot.** See our [GitHub Copilot Statement](https://github.com/hasii2011/code-ally-basic/wiki/GitHub-Copilot) for details.
 
