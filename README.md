@@ -1,8 +1,8 @@
-![](https://github.com/hasii2011/code-ally-basic/blob/master/developer/agpl-license-web-badge-version-2-256x48.png "AGPL")
-
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/hasii2011/code-ally-basic/graphs/commit-activity)
 [![CI](https://github.com/hasii2011/code-ally-basic/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/hasii2011/code-ally-basic/actions/workflows/ci.yml)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 [![PyPI version](https://badge.fury.io/py/codeallybasic.svg)](https://badge.fury.io/py/codeallybasic)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](LICENSE)
+[![Made with Python](https://img.shields.io/badge/Made%20with-Python-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 
 This project hosts common artifacts for various projects I am developing.  This package does not include any wxPython dependency.
 
